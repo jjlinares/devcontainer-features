@@ -1,0 +1,51 @@
+{
+  "agent-browser-disabled": {
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+    "features": {
+      "browser-automation": {
+        "installAgentBrowser": false
+      }
+    },
+    "remoteUser": "vscode"
+  },
+  "agent-browser-disabled-debian": {
+    "image": "mcr.microsoft.com/devcontainers/base:debian",
+    "features": {
+      "browser-automation": {
+        "installAgentBrowser": false
+      }
+    },
+    "remoteUser": "vscode"
+  },
+  "agent-browser-enabled": {
+    "build": {
+      "dockerfile": "Dockerfile"
+    },
+    "features": {
+      "browser-automation": {
+        "installAgentBrowser": true
+      }
+    },
+    "remoteUser": "vscode"
+  },
+  "agent-browser-enabled-debian": {
+    "build": {
+      "dockerfile": "Dockerfile"
+    },
+    "features": {
+      "browser-automation": {
+        "installAgentBrowser": true
+      }
+    },
+    "remoteUser": "vscode"
+  },
+  "preexisting-chrome": {
+    "build": {
+      "dockerfile": "Dockerfile"
+    },
+    "features": {
+      "browser-automation": {}
+    },
+    "remoteUser": "vscode"
+  }
+}

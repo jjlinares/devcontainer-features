@@ -1,0 +1,25 @@
+{
+  "name": "Browser Automation",
+  "id": "browser-automation",
+  "version": "1.0.0",
+  "description": "Installs one pinned Chrome for Testing build and, optionally, a pinned standalone agent-browser CLI.",
+  "keywords": [
+    "browser",
+    "chrome",
+    "automation",
+    "agent-browser"
+  ],
+  "options": {
+    "installAgentBrowser": {
+      "type": "boolean",
+      "default": false,
+      "description": "Install the pinned standalone agent-browser binary. It is configured to use the Feature-owned Chrome."
+    }
+  },
+  "containerEnv": {
+    "CHROME_BIN": "/usr/local/bin/google-chrome",
+    "BROWSER_EXECUTABLE_PATH": "/usr/local/bin/google-chrome",
+    "AGENT_BROWSER_EXECUTABLE_PATH": "/usr/local/bin/google-chrome",
+    "CHROME_DEVEL_SANDBOX": "/opt/chrome-for-testing/151.0.7922.76/chrome-linux64/chrome_sandbox"
+  }
+}

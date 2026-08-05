@@ -1,0 +1,21 @@
+name: Validate Feature metadata
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Verify generated Feature documentation
+        run: |
+          ./scripts/generate-feature-docs.sh
+          git diff --exit-code -- src/browser-automation/README.md
+      - name: Validate devcontainer-feature.json
+        uses: devcontainers/action@1082abd5d2bf3a11abccba70eef98df068277772 # v1
+        with:
+          validate-only: "true"
+          base-path-to-features: "./src"
+          devcontainer-cli-version: "0.88.0"

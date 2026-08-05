@@ -1,0 +1,44 @@
+name: Check browser automation versions
+
+on:
+  schedule:
+    - cron: "17 9 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - name: Check upstream versions and checksums
+        id: versions
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set +e
+          node scripts/check-browser-automation-versions.mjs --report "$RUNNER_TEMP/browser-automation-update.md"
+          status=$?
+          set -e
+          case "$status" in
+            0) echo "update=false" >> "$GITHUB_OUTPUT" ;;
+            2) echo "update=true" >> "$GITHUB_OUTPUT" ;;
+            *) exit "$status" ;;
+          esac
+
+      - name: Create or refresh update issue
+        if: steps.versions.outputs.update == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          title="Update browser-automation tested version pair"
+          issue="$(gh issue list --state open --search "${title} in:title" --json number --jq '.[0].number // empty')"
+          if [ -n "$issue" ]; then
+            gh issue edit "$issue" --body-file "$RUNNER_TEMP/browser-automation-update.md"
+          else
+            gh issue create --title "$title" --body-file "$RUNNER_TEMP/browser-automation-update.md"
+          fi
