@@ -67,15 +67,17 @@ Tasks:
 - [x] Add generated Feature documentation covering options, installed paths, bundled tool versions, supported platforms, and non-goals.
 - [x] Add a release process that publishes semantic-version tags and collection metadata under `ghcr.io/jjlinares/devcontainer-features`.
 - [x] Document why consumers must pin a complete Feature version or OCI digest rather than `:1`.
-- [ ] Create the `jjlinares/devcontainer-features` GitHub repository only after local tests pass.
-- [ ] Publish the first Feature release and configure the chosen GHCR visibility.
+- [x] Create the `jjlinares/devcontainer-features` GitHub repository only after local tests pass.
+- [x] Publish the first Feature release and configure the chosen GHCR visibility.
 
 Verification:
 
-- [ ] Pull the published Feature into a clean sample devcontainer by complete version.
-- [ ] Verify its published OCI metadata resolves through the Dev Container CLI.
-- [ ] Build and run both option scenarios from the published artifact, not local source.
-- [ ] Confirm an unaffiliated clean checkout can pull the artifact under the selected visibility/authentication policy.
+- [x] Pull the published Feature into a clean sample devcontainer by complete version.
+- [x] Verify its published OCI metadata resolves through the Dev Container CLI.
+- [x] Build and run both option scenarios from the published artifact, not local source.
+- [x] Confirm an unaffiliated clean checkout can pull the artifact under the selected visibility/authentication policy.
+
+Release `1.0.0` resolves to `sha256:a85cf140f7dabe819abb8ad219991147c5ea3e66819333c05c3373e87e2a5ca6`.
 
 ### Phase 4 — prove CI-prebuilt consumption in DataHub
 
@@ -105,7 +107,7 @@ Make browser security updates routine without silently changing consumer environ
 Tasks:
 
 - [x] Add automation that proposes Chrome for Testing and `agent-browser` version/checksum updates without publishing automatically.
-- [ ] Require the full Feature test matrix before merging a version update.
+- [x] Require the full Feature test matrix before merging a version update.
 - [x] Document the tested-pair update procedure and semantic-version policy.
 - [x] Document rollback by pinning the preceding Feature version or digest.
 
@@ -117,8 +119,8 @@ Verification:
 
 ## Open questions and future decisions
 
-- Repository and GHCR visibility: choose public for frictionless reuse or private with documented package authentication before the first release.
-- License: select the repository license before publication.
+- Repository and GHCR visibility: resolved to public for anonymous, frictionless reuse.
+- License: resolved to MIT.
 - `installAgentBrowser` default: resolved to `false` so the default capability remains minimal Chrome.
 - Additional platforms: consider Debian/Ubuntu ARM64, Alpine/musl, and non-Debian images only after the AMD64 tracer bullet works; official Linux Chrome for Testing currently lacks ARM64 artifacts.
 - Version configurability: initially ship one tested pair per Feature release; add caller-selectable version options only if real consumers need older parallel versions.
