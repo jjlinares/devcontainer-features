@@ -1,0 +1,65 @@
+{
+  "name": "Pi Coding Agent",
+  "id": "pi-coding-agent",
+  "version": "1.0.0",
+  "description": "Installs the latest Pi coding agent, activates available host setup, and persists sessions in the workspace.",
+  "documentationURL": "https://github.com/jjlinares/devcontainer-features/tree/main/src/pi-coding-agent",
+  "keywords": [
+    "pi",
+    "agent",
+    "ai",
+    "coding"
+  ],
+  "options": {
+    "piVersion": {
+      "type": "string",
+      "default": "latest",
+      "proposals": [
+        "latest"
+      ],
+      "description": "Version of @earendil-works/pi-coding-agent to install. The default resolves npm's latest tag at image build time."
+    },
+    "sessionDir": {
+      "type": "string",
+      "default": ".pi/sessions",
+      "proposals": [
+        ".pi/sessions"
+      ],
+      "description": "Pi session directory. Relative paths resolve from the workspace folder; absolute paths and ~/ paths are supported."
+    }
+  },
+  "dependsOn": {
+    "ghcr.io/devcontainers/features/node:2": {
+      "version": "24",
+      "nodeGypDependencies": false,
+      "npmVersion": "none",
+      "pnpmVersion": "none"
+    }
+  },
+  "containerEnv": {
+    "PI_CODING_AGENT_DIR": "/mnt/pi-agent"
+  },
+  "mounts": [
+    {
+      "source": "${localEnv:HOME}/.pi/agent",
+      "target": "/mnt/pi-host",
+      "type": "bind"
+    },
+    {
+      "source": "${localEnv:HOME}/.pi/agent/AGENTS.md",
+      "target": "/mnt/pi-host-resolved/AGENTS.md",
+      "type": "bind"
+    },
+    {
+      "source": "${localEnv:HOME}/.pi/agent/skills",
+      "target": "/mnt/pi-host-resolved/skills",
+      "type": "bind"
+    },
+    {
+      "source": "${localEnv:HOME}/.pi/agent/extensions",
+      "target": "/mnt/pi-host-resolved/extensions",
+      "type": "bind"
+    }
+  ],
+  "postStartCommand": "/usr/local/share/pi-coding-agent-feature/post-start.sh"
+}
