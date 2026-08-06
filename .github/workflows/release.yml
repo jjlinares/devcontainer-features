@@ -24,7 +24,7 @@ jobs:
           --base-image "${{ matrix.base-image }}"
           --remote-user vscode .
 
-  browser-scenarios:
+  scenarios:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
@@ -70,7 +70,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     needs:
       - generated-and-duplicate
-      - browser-scenarios
+      - scenarios
       - pi-generated-and-duplicate
       - pi-scenarios
     runs-on: ubuntu-latest
