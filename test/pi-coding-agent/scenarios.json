@@ -1,0 +1,18 @@
+{
+  "host-setup": {
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+    "features": {
+      "pi-coding-agent": {
+        "sessionDir": ".pi/container-sessions"
+      }
+    },
+    "remoteUser": "vscode"
+  },
+  "python-image": {
+    "image": "mcr.microsoft.com/devcontainers/python:1-3.13-bookworm",
+    "features": {
+      "pi-coding-agent": {}
+    },
+    "remoteUser": "vscode"
+  }
+}

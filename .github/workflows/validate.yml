@@ -12,7 +12,7 @@ jobs:
       - name: Verify generated Feature documentation
         run: |
           ./scripts/generate-feature-docs.sh
-          git diff --exit-code -- src/browser-automation/README.md
+          git diff --exit-code -- src/*/README.md
       - name: Validate devcontainer-feature.json
         uses: devcontainers/action@1082abd5d2bf3a11abccba70eef98df068277772 # v1
         with:
