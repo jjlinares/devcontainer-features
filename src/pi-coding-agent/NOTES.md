@@ -9,7 +9,7 @@ This Feature is intended as personal developer tooling, not project configuratio
 ```jsonc
 {
   "dev.containers.defaultFeatures": {
-    "ghcr.io/jjlinares/devcontainer-features/pi-coding-agent:1.0.0": {}
+    "ghcr.io/jjlinares/devcontainer-features/pi-coding-agent:1.0.1": {}
   }
 }
 ```
@@ -52,7 +52,7 @@ This prevents Pi from using host trust decisions and platform-specific binaries 
 
 ## Session persistence
 
-The default session directory is `.pi/sessions`, resolved to an absolute path from the devcontainer workspace folder during `postStartCommand`. Since the workspace is already mounted, no second session mount is required. A local `.gitignore` prevents session JSONL files from entering git accidentally.
+The default session directory is `.pi/sessions`, resolved to an absolute path from the devcontainer workspace folder during `postStartCommand`. Since the workspace is already mounted, no second session mount is required. A self-ignored local `.gitignore` prevents both itself and session JSONL files from appearing in git.
 
 A small `pi` launcher exports `PI_CODING_AGENT_SESSION_DIR` without modifying shared host settings. An explicitly supplied `PI_CODING_AGENT_SESSION_DIR` takes precedence.
 
@@ -61,7 +61,7 @@ Override the location with an absolute, workspace-relative, or home-relative Fea
 ```jsonc
 {
   "dev.containers.defaultFeatures": {
-    "ghcr.io/jjlinares/devcontainer-features/pi-coding-agent:1.0.0": {
+    "ghcr.io/jjlinares/devcontainer-features/pi-coding-agent:1.0.1": {
       "sessionDir": "../pi-session-data"
     }
   }

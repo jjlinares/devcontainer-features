@@ -11,7 +11,8 @@ check "Pi available through launcher" bash -c 'pi --version | grep -E "^[0-9]+\\
 check "Pi npm package installed globally" bash -c 'npm list --global --depth=0 @earendil-works/pi-coding-agent >/dev/null'
 check "host-backed agent directory configured" test "${PI_CODING_AGENT_DIR}" = /mnt/pi-agent
 check "session path state uses workspace" node -e 'const fs=require("fs"), path=require("path"); const actual=fs.readFileSync(process.env.HOME+"/.cache/pi-coding-agent-feature/session-dir","utf8").trim(); if (actual !== path.resolve(process.cwd(), ".pi/sessions")) process.exit(1)'
-check "session directory created" bash -c 'dir="$(<"$HOME/.cache/pi-coding-agent-feature/session-dir")"; test -d "$dir" && grep -Fx "*" "$dir/.gitignore"'
+check "session directory created with self-ignoring gitignore" bash -c 'dir="$(<"$HOME/.cache/pi-coding-agent-feature/session-dir")"; test -d "$dir" && cmp -s "$dir/.gitignore" <(printf "*\n"); tmp="$(mktemp -d)"; trap '\''rm -rf "$tmp"'\'' EXIT; cp "$dir/.gitignore" "$tmp/.gitignore"; git -C "$tmp" init -q; git -C "$tmp" check-ignore -q .gitignore'
+check "legacy session gitignore migrated" bash -c 'dir="$(<"$HOME/.cache/pi-coding-agent-feature/session-dir")"; printf "*\n!.gitignore\n" > "$dir/.gitignore"; /usr/local/share/pi-coding-agent-feature/post-start.sh >/dev/null; cmp -s "$dir/.gitignore" <(printf "*\n")'
 check "host settings activated" bash -c 'test -L /mnt/pi-agent/settings.json && test -f /mnt/pi-host/settings.json'
 check "host auth activated" bash -c 'test -L /mnt/pi-agent/auth.json && test -f /mnt/pi-host/auth.json'
 check "host skills activated" bash -c 'test -L /mnt/pi-agent/skills && test "$(readlink /mnt/pi-agent/skills)" = /mnt/pi-host-resolved/skills'

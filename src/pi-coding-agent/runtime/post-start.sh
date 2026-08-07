@@ -71,8 +71,9 @@ main() {
     printf '%s\n' "${resolved_session_dir}" > "${SESSION_PATH_FILE}"
     chmod 0600 "${SESSION_PATH_FILE}"
 
-    if [ ! -e "${resolved_session_dir}/.gitignore" ]; then
-        printf '*\n!.gitignore\n' > "${resolved_session_dir}/.gitignore"
+    local session_ignore="${resolved_session_dir}/.gitignore"
+    if [ ! -e "${session_ignore}" ] || cmp -s "${session_ignore}" <(printf '*\n!.gitignore\n'); then
+        printf '*\n' > "${session_ignore}"
     fi
 
     if [ ! -e "${AGENT_DIR}/settings.json" ]; then
