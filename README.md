@@ -31,7 +31,7 @@ Opt in through VS Code User Settings rather than a project repository:
 ```jsonc
 {
   "dev.containers.defaultFeatures": {
-    "ghcr.io/jjlinares/devcontainer-features/pi-coding-agent:1.0.0": {}
+    "ghcr.io/jjlinares/devcontainer-features/pi-coding-agent:1.0.1": {}
   }
 }
 ```

@@ -1,7 +1,7 @@
 {
   "name": "Pi Coding Agent",
   "id": "pi-coding-agent",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Installs the latest Pi coding agent, activates available host setup, and persists sessions in the workspace.",
   "documentationURL": "https://github.com/jjlinares/devcontainer-features/tree/main/src/pi-coding-agent",
   "keywords": [
