@@ -4,5 +4,5 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends python3 \
     && rm -rf /var/lib/apt/lists/*
 
-COPY fixture.html /opt/browser-automation-fixture/index.html
-RUN chmod -R a+rX /opt/browser-automation-fixture
+COPY fixture.html /opt/browser-tools-fixture/index.html
+RUN chmod -R a+rX /opt/browser-tools-fixture

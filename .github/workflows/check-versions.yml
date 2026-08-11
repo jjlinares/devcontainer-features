@@ -1,4 +1,4 @@
-name: Check browser automation versions
+name: Check browser tools versions
 
 on:
   schedule:
@@ -21,7 +21,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set +e
-          node scripts/check-browser-automation-versions.mjs --report "$RUNNER_TEMP/browser-automation-update.md"
+          node scripts/check-browser-tools-versions.mjs --report "$RUNNER_TEMP/browser-tools-update.md"
           status=$?
           set -e
           case "$status" in
@@ -35,10 +35,10 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          title="Update browser-automation tested version pair"
+          title="Update browser-tools tested version pair"
           issue="$(gh issue list --state open --search "${title} in:title" --json number --jq '.[0].number // empty')"
           if [ -n "$issue" ]; then
-            gh issue edit "$issue" --body-file "$RUNNER_TEMP/browser-automation-update.md"
+            gh issue edit "$issue" --body-file "$RUNNER_TEMP/browser-tools-update.md"
           else
-            gh issue create --title "$title" --body-file "$RUNNER_TEMP/browser-automation-update.md"
+            gh issue create --title "$title" --body-file "$RUNNER_TEMP/browser-tools-update.md"
           fi

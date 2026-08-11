@@ -54,7 +54,7 @@ printf '%s\n' "${page_targets}" > "${work_dir}/page-targets.json"
 check "remote user is non-root" bash -c 'test "$(id -u)" -ne 0'
 check "headless page title" grep -F '"title": "browser-ready"' "${work_dir}/page-targets.json"
 
-check "agent-browser disabled by default" bash -c '! command -v agent-browser'
+check "agent-browser enabled by default" bash -c "agent-browser --version | grep -Fx 'agent-browser 0.33.2'"
 check "one Feature-owned Chrome executable" bash -c "test \"\$(find /opt/chrome-for-testing -type f -name chrome | wc -l)\" -eq 1"
 check "no ChromeDriver" bash -c '! command -v chromedriver && ! find /opt/chrome-for-testing -iname "*chromedriver*" | grep -q .'
 check "no Xvfb" bash -c '! command -v Xvfb'

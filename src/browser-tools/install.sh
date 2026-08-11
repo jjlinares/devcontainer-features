@@ -12,11 +12,11 @@ readonly CHROME_BINARY="${CHROME_ROOT}/chrome-linux64/chrome"
 readonly CHROME_SANDBOX="${CHROME_ROOT}/chrome-linux64/chrome_sandbox"
 
 log() {
-    printf '[browser-automation] %s\n' "$*"
+    printf '[browser-tools] %s\n' "$*"
 }
 
 fail() {
-    printf '[browser-automation] ERROR: %s\n' "$*" >&2
+    printf '[browser-tools] ERROR: %s\n' "$*" >&2
     exit 1
 }
 
@@ -44,7 +44,7 @@ case "${os_family}" in
     *) fail "unsupported distribution '${ID:-unknown}': only Debian/Ubuntu-based images are supported" ;;
 esac
 
-install_agent_browser="${INSTALLAGENTBROWSER:-false}"
+install_agent_browser="${INSTALLAGENTBROWSER:-true}"
 install_agent_browser="$(printf '%s' "${install_agent_browser}" | tr '[:upper:]' '[:lower:]')"
 case "${install_agent_browser}" in
     true|false) ;;
