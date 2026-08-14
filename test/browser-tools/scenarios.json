@@ -2,7 +2,7 @@
   "agent-browser-disabled": {
     "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
     "features": {
-      "browser-automation": {
+      "browser-tools": {
         "installAgentBrowser": false
       }
     },
@@ -11,7 +11,7 @@
   "agent-browser-disabled-debian": {
     "image": "mcr.microsoft.com/devcontainers/base:debian",
     "features": {
-      "browser-automation": {
+      "browser-tools": {
         "installAgentBrowser": false
       }
     },
@@ -22,7 +22,7 @@
       "dockerfile": "Dockerfile"
     },
     "features": {
-      "browser-automation": {
+      "browser-tools": {
         "installAgentBrowser": true
       }
     },
@@ -33,7 +33,7 @@
       "dockerfile": "Dockerfile"
     },
     "features": {
-      "browser-automation": {
+      "browser-tools": {
         "installAgentBrowser": true
       }
     },
@@ -44,7 +44,7 @@
       "dockerfile": "Dockerfile"
     },
     "features": {
-      "browser-automation": {}
+      "browser-tools": {}
     },
     "remoteUser": "vscode"
   }

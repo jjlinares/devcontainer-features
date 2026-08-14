@@ -1,11 +1,11 @@
-# Browser automation maintenance
+# Browser tools maintenance
 
 Each Feature release owns one exact Chrome for Testing and agent-browser pair. The scheduled `check-versions.yml` workflow checks the stable Chrome feed and latest stable agent-browser release. When either changes, it independently downloads changed assets, computes SHA-256 values, checks the agent-browser hash against GitHub's asset digest, and creates or refreshes an issue. It never edits source or publishes a Feature.
 
 Run the same check locally:
 
 ```bash
-node scripts/check-browser-automation-versions.mjs
+node scripts/check-browser-tools-versions.mjs
 ```
 
 Exit status `0` means current; `2` means an update is available.
@@ -13,7 +13,7 @@ Exit status `0` means current; `2` means an update is available.
 ## Update procedure
 
 1. Review the upstream Chrome and agent-browser releases. Do not trust the scheduled issue blindly.
-2. Update the version and SHA-256 constants in `src/browser-automation/install.sh`.
+2. Update the version and SHA-256 constants in `src/browser-tools/install.sh`.
 3. Update `CHROME_DEVEL_SANDBOX` in `devcontainer-feature.json` and all version assertions plus `NOTES.md`.
 4. Increment the Feature version in `devcontainer-feature.json`, then run `./scripts/generate-feature-docs.sh`.
 5. Run metadata packaging and the complete generated, duplicate, disabled, and enabled test matrix on both supported base-image families.

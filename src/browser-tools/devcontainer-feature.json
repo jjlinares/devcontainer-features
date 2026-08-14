@@ -1,8 +1,8 @@
 {
-  "name": "Browser Automation",
-  "id": "browser-automation",
-  "version": "1.0.0",
-  "description": "Installs one pinned Chrome for Testing build and, optionally, a pinned standalone agent-browser CLI.",
+  "name": "Browser Tools",
+  "id": "browser-tools",
+  "version": "0.1.0",
+  "description": "Installs one pinned Chrome for Testing build and, by default, a pinned standalone agent-browser CLI.",
   "keywords": [
     "browser",
     "chrome",
@@ -12,8 +12,8 @@
   "options": {
     "installAgentBrowser": {
       "type": "boolean",
-      "default": false,
-      "description": "Install the pinned standalone agent-browser binary. It is configured to use the Feature-owned Chrome."
+      "default": true,
+      "description": "Install the pinned standalone agent-browser binary configured to use the Feature-owned Chrome. Set to false to install Chrome only."
     }
   },
   "containerEnv": {

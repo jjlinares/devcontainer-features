@@ -7,7 +7,7 @@ import { fileURLToPath } from "node:url";
 import path from "node:path";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const installSource = readFileSync(path.join(root, "src/browser-automation/install.sh"), "utf8");
+const installSource = readFileSync(path.join(root, "src/browser-tools/install.sh"), "utf8");
 const reportFlag = process.argv.indexOf("--report");
 const reportPath = reportFlag === -1 ? null : process.argv[reportFlag + 1];
 if (reportFlag !== -1 && !reportPath) throw new Error("--report requires a path");
@@ -57,7 +57,7 @@ if (!agentVersion || !agentAsset?.browser_download_url) throw new Error("Linux x
 const chromeChanged = chrome.version !== constants.CHROME_VERSION;
 const agentChanged = agentVersion !== constants.AGENT_BROWSER_VERSION;
 if (!chromeChanged && !agentChanged) {
-  console.log(`Browser automation pair is current: Chrome ${chrome.version}, agent-browser ${agentVersion}`);
+  console.log(`Browser tools pair is current: Chrome ${chrome.version}, agent-browser ${agentVersion}`);
   process.exit(0);
 }
 
@@ -73,7 +73,7 @@ if (agentAsset.digest && agentAsset.digest !== `sha256:${agentHash}`) {
   throw new Error(`Downloaded agent-browser hash ${agentHash} differs from GitHub asset digest ${agentAsset.digest}`);
 }
 
-const report = `# Browser automation version update available
+const report = `# Browser tools version update available
 
 Current tested pair:
 - Chrome for Testing \`${constants.CHROME_VERSION}\`
