@@ -1,0 +1,13 @@
+{
+  "pinned-home": {
+    "image": "mcr.microsoft.com/devcontainers/base:debian",
+    "features": {
+      "t3code": {
+        "t3Version": "0.1.0",
+        "t3Home": "~/.t3-test"
+      }
+    },
+    "containerUser": "root",
+    "remoteUser": "vscode"
+  }
+}

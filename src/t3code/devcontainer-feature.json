@@ -1,0 +1,34 @@
+{
+  "name": "T3 Code",
+  "id": "t3code",
+  "version": "1.0.0",
+  "description": "Installs the official standalone T3 Code server and starts it with the container.",
+  "documentationURL": "https://github.com/jjlinares/devcontainer-features/tree/main/src/t3code",
+  "keywords": [
+    "t3code",
+    "agent",
+    "ai"
+  ],
+  "entrypoint": "/usr/local/share/t3code-feature/entrypoint.sh",
+  "init": true,
+  "options": {
+    "t3Version": {
+      "type": "string",
+      "default": "latest",
+      "proposals": [
+        "latest",
+        "0.1.0"
+      ],
+      "description": "Official T3 Code version. latest resolves the stable release at image build time; use an exact version to pin it."
+    },
+    "t3Home": {
+      "type": "string",
+      "default": "~/.t3",
+      "proposals": [
+        "~/.t3",
+        "/workspace/.t3"
+      ],
+      "description": "T3 state directory. Must be an absolute path or begin with ~/; T3CODE_HOME overrides it at runtime."
+    }
+  }
+}
