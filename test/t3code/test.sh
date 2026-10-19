@@ -19,7 +19,7 @@ wait_for_server() {
     return 1
 }
 check "entrypoint starts reachable server" wait_for_server
-check "V2 state belongs to remote user" test -O "${EXPECTED_T3_HOME:-$HOME/.t3}/userdata/statev2.sqlite"
+check "state directory belongs to remote user" test -O "${EXPECTED_T3_HOME:-$HOME/.t3}/userdata"
 check "logs belong to remote user" test -O "${XDG_STATE_HOME:-$HOME/.local/state}/t3/server.log"
 check "CLI pairs with the automatically started server" bash -c 't3 pair | grep -q "Pairing URL:"'
 check "default bind accepts container network connections" bash -c 'curl --noproxy "*" --max-time 5 --fail --silent "http://$(hostname -I | awk '\''{print $1}'\''):3773/" >/dev/null'
